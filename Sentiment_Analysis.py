@@ -32,5 +32,15 @@ torch.cuda.current_device() # Check which GPU is being used
 
 # Use the GPU with new pipleline object
 classifier = pipeline("sentiment-analysis", device=0) # 0 is the GPU device
-# Read our csv file contianing the data
-df = pd.read_csv('AirlineTweet.csv')
+df = pd.read_csv('AirlineTweet.csv') # Read our csv file contianing the data
+df.head() # Check what is inside our dataframe
+# Filter out our dataframe to only contain the columns we need
+df = df_[['airline_sentiment', 'text']].copy()
+# Plot histogram of our data
+df['airline_sentiment'].hist() # Tell us if data is balanced or not and what classes we have in our data
+
+# Filter out our dataframe to only contain the columns we need in our case neutral
+df = df[df.airline_sentiment != 'neutral'].copy() # our model can not predict neutral
+
+
+

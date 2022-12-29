@@ -3,9 +3,11 @@ import numpy as np
 import pandas as pd
 import seaborn as sn
 import matplotlib.pyplot as plt
+# To get GPU device 
+import torch
 
 from sklearn.metrics import confusion_matrix, f1_score, roc_auc_score
-form sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 
 # Basic usage of pipeline
 classifier = pipeline("sentiment-analysis")
@@ -21,8 +23,14 @@ classifier("I can't say this was a good movie.")
 
 # Multiple inputs passed as a list
 classifier([
-    "This is such a great course!",
-    "This is not good for me!",
-    "I can't say this was a bad movie.",
-    "I can't say this was a good movie."
+    "This is such a great movie!",
+    "I can't understand any of this. Instructor kept telling me to meet the prequisites. What are prequisites? Why does he keep saying that?" 
 ])
+
+torch.cuda.is_available() # Check if GPU is available
+torch.cuda.current_device() # Check which GPU is being used
+
+# Use the GPU with new pipleline object
+classifier = pipeline("sentiment-analysis", device=0) # 0 is the GPU device
+# Read our csv file contianing the data
+df = pd.read_csv('AirlineTweet.csv')

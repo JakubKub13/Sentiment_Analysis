@@ -85,8 +85,13 @@ def plot_cm(cm):
 
 plot_cm(cm)
 
-
-
+# check the f1 score
+f1_score(df['target'], preds) 
+# we invert targets and predictions
+f1_score(1 - ds['target'], 1 - preds)
+# Check auc score
+roc_auc_score(df['target'], probs)
+roc_auc_score(1 - df['target'], 1 - np.array(probs))
 
 
 

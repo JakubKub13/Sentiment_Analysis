@@ -41,6 +41,12 @@ df['airline_sentiment'].hist() # Tell us if data is balanced or not and what cla
 
 # Filter out our dataframe to only contain the columns we need in our case neutral
 df = df[df.airline_sentiment != 'neutral'].copy() # our model can not predict neutral
+# labels to integers
+target_map = {'positive': 1, 'negative': 0}
+df['target'] = df['airline_sentiment'].map(target_map)
+# call .head funtion to check if our data is correct
+df.head()
+
 
 
 

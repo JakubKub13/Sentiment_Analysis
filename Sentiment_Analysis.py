@@ -56,6 +56,26 @@ predictions = classifier(texts) # check how long this process takes
 #print(predictions)
 print(predictions) # check what is inside our predictions
 
+# using AUC metric because our data are not balanced
+# AUC is a good metric for imbalanced data
+probs = [d['score'] if d['label'].startswith('P') else 1 - d['score'] for d in predictions]
+
+print(probs)
+
+# convert predictions to array
+preds = [1 if d['label'].startswith('P') else 0 for d in predictions]
+
+preds = np.array(preds)
+
+# compute the accuracy
+print("acc: ", np.mean(sf['target'] == preds))
+
+# compute the confusion matrix
+#  It is a summary of the model's predictions for a binary or multi-class classification problem,
+cm = confusion_matrix(df['target'], preds, normalize='true')
+cm
+
+
 
 
 

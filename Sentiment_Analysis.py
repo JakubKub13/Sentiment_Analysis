@@ -46,6 +46,16 @@ target_map = {'positive': 1, 'negative': 0}
 df['target'] = df['airline_sentiment'].map(target_map)
 # call .head funtion to check if our data is correct
 df.head()
+# check how many samples we have in our data
+len(df) # check how much time this took for model to make prediction for each sample
+
+# Now we use pretraided classifier to make predictions
+texts = df['text'].tolist() # convert our text column to list
+predictions = classifier(texts) # check how long this process takes
+
+#print(predictions)
+print(predictions) # check what is inside our predictions
+
 
 
 

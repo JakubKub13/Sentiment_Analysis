@@ -91,7 +91,7 @@ f1_score(df['target'], preds)
 f1_score(1 - ds['target'], 1 - preds)
 # Check auc score
 roc_auc_score(df['target'], probs)
-roc_auc_score(1 - df['target'], 1 - np.array(probs))
+roc_auc_score(1 - df['target'], 1 - np.array(probs)) # demonstrate that auc is not sensitive to the order of the inputs
 
 
 

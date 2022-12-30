@@ -72,8 +72,18 @@ print("acc: ", np.mean(sf['target'] == preds))
 
 # compute the confusion matrix
 #  It is a summary of the model's predictions for a binary or multi-class classification problem,
-cm = confusion_matrix(df['target'], preds, normalize='true')
+cm = confusion_matrix(df['target'], preds, normalize='true') # normalize='true' each row will sum to 1
 cm
+
+# plot the confusion matrix
+def plot_cm(cm):
+    classes = ['negative', 'positive']
+    df_cm = pd.DataFrame(cm, index=classes, columns=classes)
+    ax = sn.heatmap(df_cm, annot=True, fmt='g')
+    ax.set_xlabel('Predicted')
+    ax.set_ylabel('Target')
+
+plot_cm(cm)
 
 
 
